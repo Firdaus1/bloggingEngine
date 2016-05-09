@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Create a Blog{% endblock %}
+{% block content %}
+
+    <h1>Add a post</h1>
+
+    {% if errorms == 1 %}
+        <p class="error">Missing Title!</p>
+    {% elif errorms == 2 %}
+        <p class="error">Title already existed</p>
+    {% endif %}
+
+    <script>var postId ='{{ pid }}';
+            var csrf_token = '{{ _csrf_token }}'
+    </script>
+    <form action="/addPost" enctype="multipart/form-data" method="POST">
+        <h2>Title: <input name="title" type="text" width="40"></h2>
+        <h2><textarea name="content" rows="8", cols="40"></textarea></h2>
+        <input type="hidden" name="_csrf_token" value="{{ _csrf_token }}">
+        <input type="hidden" name="tempId" value="{{ pid }}">
+        <label>Image:<input type="file" name="image1" accept="image/*"></label>
+        <button type="submit" class="widget agree" data-state="{{ "checked" if checked else "unchecked" }}">Create</button>
+    </form>
+<script type="application/javascript" src="{{ url_for('static', filename='location.js') }}"></script>
+{% endblock %}

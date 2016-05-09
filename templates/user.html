@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.name }}{% endblock %}
+{% block content %}
+    <div id="profile-shell" class="user-profile" data-user-id="{{ user.id }}">
+        {% if user.photo %}
+            <img class="avatar" height="150" width="150" src="{{ url_for('get_photo', uid=user.id) }}">
+        {% else %}
+            <img class="avatar" src="https://www.gravatar.com/avatar/{{ user.grav_hash }}">
+        {% endif %}
+        <h1>{{ user.name }}</h1>
+        <a href="/"><button class="pure-button pure-button-primary">Home Page</button></a><br>
+
+        <font class = "answer content" data-followee-id="{{ user.id }}">
+            {% if session.auth_user %}
+                {% if session.auth_user != user.id %}
+                    <span class="widget follow" data-state="{{ "checked" if followed else "unchecked" }}"></span>
+                {% else %}
+                    <a href="/u/edit/{{ user.id }}">
+                        <button class="pure-button pure-button-primary">Edit Profile</button></a>
+
+                {% endif %}
+            {% endif %}
+        </font>
+
+        <h4>Location: {{ user.location }}</h4>
+        <h4>Bio: {{ user.bio }}</h4><br><br>
+
+
+        {% for i in posts | sort(attribute='time',reverse=True) %}
+            <div class="timeline" id="timeline">
+                Title:{{ i.title }}<br>
+                {% if i.image %}
+                    <img class="postimage" height="150" width="150" src="{{ url_for('get_image', pid=i.id) }}">
+                {% endif %}<br>
+                Content: <font class="message">{{ i.content }}</font><br>
+                <em class="message timestamp" style="padding-left: 21em">Time: {{ i.time }}</em>
+            </div><br>
+        {% endfor %}<br><br>
+
+        {% if session.auth_user %}
+            <a href="/logout"><button class="pure-button pure-button-primary">Logout</button></a>
+        {% else %}
+            <a href="/login"><button class="pure-button pure-button-primary">Login</button></a>
+        {% endif %}
+
+    </div>
+    <script src="{{ url_for('static', filename='userpage.js') }}" async></script>
+{% endblock %}

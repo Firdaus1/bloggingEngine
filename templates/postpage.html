@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+    <a href="/"><button class="pure-button pure-button-primary">Home Page</button></a>
+    <div class="pagedetail">
+        <h2>{{ post.title }}</h2>
+        {% if post.image %}
+            <img class="user-profile postimage" height="300" width="300" src="{{ url_for('get_image', pid=post.id) }}">
+        {% endif %}<br>
+        <h3>{{ post.content }}</h3>
+        Post by <a href="{{ url_for('user', uid=post.author.id) }}">
+        {{ post.author.name }}</a>. <em>{{ post.time }}</em><br><br>
+    </div><br>
+{% endblock %}

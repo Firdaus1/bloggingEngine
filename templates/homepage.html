@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Good morning,
+        {% if session.auth_user %}
+            <a href="{{ url_for('user', uid=g.user.id) }}"><em class="username">{{ g.user.name }}</em></a>!
+        {% else %}
+            Guest! <a href="/login"><button>Login</button></a>
+        {% endif %}
+    </h1>
+    <script>var _csrf_token = _csrf_token</script>
+   <!-- <script src="{{ url_for('static', filename='location.js') }}"></script> -->
+
+            {% for i in posts | sort(attribute='time',reverse=True) %}
+                <div class="timeline" id="timeline">
+                    <li><a href="/postpage/{{ i.id }}"> {{ i.title }}
+                    </a> post by <a href="{{ url_for('user', uid=i.author.id) }}">
+                        {{ i.author.name }}</a>. <em class="message timestamp">{{ i.time }}</em>
+                        posted near {{ i.location }}</li></div><br>
+            {% endfor %}
+
+    {% if session.auth_user %}
+            <br><a href="/addPosts">Add a Post</a>
+
+            <br><br><a href="/logout">
+        <button class="pure-button pure-button-primary">Logout</button></a>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='timeline.js') }}"></script>
+    <script src="{{ url_for('static', filename='userpage.js') }}"></script>
+
+{% endblock %}

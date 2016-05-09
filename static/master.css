@@ -1,0 +1,106 @@
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+  font-size: 14pt;
+}
+
+body {
+  background-color: #EEE;
+  padding: 0;
+}
+
+main {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: 1ex;
+  background-color: #FFF;
+}
+
+/* user profile pages */
+.user-profile .avatar {
+  float: left;
+  display: block;
+  margin-right: 1ex;
+}
+
+.timeline .message h2 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.timeline .message .timestamp {
+  display: inline;
+  text-align: right;
+}
+.timeline .message {
+  clear: left;
+  padding: 1ex 1ex;
+}
+.timeline{
+  font-family:"Palatino Linotype","Book Antiqua",Palatino, serif;
+  font-weight: lighter;
+
+  border-bottom: groove;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  width:35em;
+
+  padding: 10px 10px 10px 10px;
+}
+
+.follow {
+  font-family: FontAwesome;
+  /* a star is a block that flows inline with text */
+  display: inline-block;
+  /* stars have link-style pointers */
+  cursor: pointer;
+}
+
+.follow[data-state="checked"]::after{
+    content:"Unfollow";
+    color:green;
+}
+
+.follow[data-state="unchecked"]::after {
+  content: "Follow";
+  color:green;
+}
+
+.user-profile .postimage{
+  display: block;
+  margin-right: 1ex;
+}
+.user-profile h1{
+  border: seagreen;
+  width: 12em;
+  display: inline-block;
+}
+
+.bio{
+  clear: left;
+}
+
+.agree
+{
+   font-family: FontAwesome;
+   /* a star is a block that flows inline with text */
+  display: inline-block;
+  /* stars have link-style pointers */
+  cursor: pointer;
+}
+
+.username {
+  font-family:"Palatino Linotype","Book Antiqua",Palatino, serif;
+  font-weight: lighter;
+}
+
+.pagedetail h3{
+  border-style: solid;
+  border-width: 2px;
+  padding: 1%;
+  border-color: grey;
+  width: 500px;
+}
+.pure-button-primary{
+  background-color: #003b99;
+}
